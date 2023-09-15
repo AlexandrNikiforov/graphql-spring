@@ -1,4 +1,4 @@
-package com.alexnikiforov.graphql.graphql_springboot;
+package com.alexnikiforov.graphql.graphqlspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
