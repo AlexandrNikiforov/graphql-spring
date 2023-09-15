@@ -7,6 +7,7 @@ import graphql.GraphQLContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.BatchMapping;
+import org.springframework.graphql.data.method.annotation.ContextValue;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -27,6 +28,8 @@ public class FitnessController {
                                        GraphQLContext context) {
         log.info("schedule({})", coach);
 
+        context.put("apiKey", "value");
+
         var startsAt = LocalDateTime.now();
 
         return List.of(FitnessClass.builder()
@@ -42,6 +45,7 @@ public class FitnessController {
     @BatchMapping
     public Callable<Map<FitnessClass, Difficulty>> difficulty(
             List<FitnessClass> fitnessClasses,
+            @ContextValue String apiKey,
             GraphQLContext context
     ) {
         log.info("difficulty({})", fitnessClasses);
